@@ -191,8 +191,13 @@ movies_2000 %>%
   arrange(rating, desc(budget))  # these are the lowest rated movies arranged by largest budget
 
 # Using the original 'movies' data, what is the longest movie? What is the oldest movie?
-```
 
+movies %>%
+  arrange(desc(length))
+movies %>% 
+  arrange (year)
+```
+oldest movie is Blacksmith Scene in 1893 and the longest movie is "Cure for Insomia, The"
 
 
 ## Scavenger Hunt
@@ -202,26 +207,43 @@ See if you can answer these questions:
 1. How many movies were released in 1995?
 
 ```{r}
-
-```
+movies_Ques1 <- movies %>%
+  filter(year == 1995)
+``` 
+1284 movies released in 1995 
 
 2. Which Comedies with an MPAA rating, over 120 minutes have a rating above 8?
 
 ```{r}
-
+movies_Ques2 <-movies %>%
+  filter(mpaa !=  "",Comedy == 1, length > 120, rating >8) 
+movies_Ques2 
 ```
+
+4 movies were shown titled, "Big Fish", "Forest Gump", Homem Que Copiva, O", and "Incredibles, The" 
 
 3. Create a subset of only Harry Potter movies with the title, rating, budget, and votes. Which movies are included in this data? Which is highest rated? Which has the most votes on imdb.com?
 
 ```{r}
-
+movies_Ques3 <- movies %>%
+  filter(str_detect(title,"Harry Potter"))%>%
+ select(title, rating, budget, votes) 
+movies_Ques3 
 ```
+
+3 movies are included in this data including, "Harry Potter and the chamber of secrets", "Harry Potter and the prisoner of Azkaban", and "Harry Potter and the sorcerers stone" The highest rating  Harry Potter movie is , "Harry Potter and the prisoner of Azkaban" The most voted Harry Potter movie is "Harry Potter and the sorcerers stone" 
 
 4. What is the highest budget for a movie that is an Animation or Comedy with at least 100 votes?
 
 ```{r}
-
+movies_Ques4 <- movies %>%
+filter(votes >= 100, Animation == 1 | Comedy == 1) %>%
+arrange (desc (budget))
+movies_Ques4 
 ```
+
+The movie, "Wild Wild West" has the highest budget that is a Comedy or a Animation, with at
+least 100 votes. 
 
 5. Is your favorite movie in the dataset? What other questions could you ask or answer using `filter()`, `select()`, and `arrange()`?
 
